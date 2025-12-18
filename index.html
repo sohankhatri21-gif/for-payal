@@ -97,35 +97,28 @@ button {
 <!-- PAGE 4 -->
 <div class="page" id="page4">
     <h1>Payal, this is for you ❤️</h1>
+
     <img class="gif" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+
     <p style="margin-top:15px;">
         Tumhari muskurahat meri favourite cheez hai ✨<br><br>
         <b>Will you be mine?</b> 💖
     </p>
 
-    <!-- Song (plays after Yes) -->
-    <iframe id="ytSong" width="300" height="170"
-        src="https://youtu.be/qo_VbDDf0hg?si=jNeM4gZWg7qmJgNV"
-        allow="autoplay"
-        style="border-radius:12px; border:none;">
-    </iframe>
+    <!-- Audio -->
+    <audio id="song" controls>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
 </div>
 
 <script>
-let songPlayed = false;
-
 function nextPage(n) {
     document.getElementById("page" + n).classList.remove("active");
     document.getElementById("page" + (n + 1)).classList.add("active");
 
     if (n === 2) startTyping();
-
-    // Play song ONLY after clicking Yes 💕
-    if (n === 3 && !songPlayed) {
-        const iframe = document.getElementById("ytSong");
-        iframe.src += "&autoplay=1";
-        songPlayed = true;
-    }
+    if (n === 3) document.getElementById("song").play();
 }
 
 /* Typewriter text */
@@ -147,7 +140,7 @@ function startTyping() {
     }, 60);
 }
 
-/* No button runs away */
+/* No button escapes */
 const noBtn = document.getElementById("noBtn");
 noBtn.addEventListener("mouseover", () => {
     noBtn.style.left = Math.random() * 70 + "%";
@@ -168,4 +161,5 @@ setInterval(() => {
 
 </body>
 </html>
+
 
