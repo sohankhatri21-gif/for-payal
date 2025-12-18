@@ -97,29 +97,38 @@ button {
 <!-- PAGE 4 -->
 <div class="page" id="page4">
     <h1>Payal, this is for you ❤️</h1>
-
     <img class="gif" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
-
     <p style="margin-top:15px;">
         Tumhari muskurahat meri favourite cheez hai ✨<br><br>
         <b>Will you be mine?</b> 💖
     </p>
 
-    <!-- YouTube Song -->
-    <iframe width="300" height="170"
-        src="https://www.youtube.com/embed/1poXN3jF2o0?autoplay=1"
+    <!-- Song (plays after Yes) -->
+    <iframe id="ytSong" width="300" height="170"
+        src="https://www.youtube.com/embed/1poXN3jF2o0?enablejsapi=1"
         allow="autoplay"
         style="border-radius:12px; border:none;">
     </iframe>
 </div>
 
 <script>
+let songPlayed = false;
+
 function nextPage(n) {
     document.getElementById("page" + n).classList.remove("active");
     document.getElementById("page" + (n + 1)).classList.add("active");
+
     if (n === 2) startTyping();
+
+    // Play song ONLY after clicking Yes 💕
+    if (n === 3 && !songPlayed) {
+        const iframe = document.getElementById("ytSong");
+        iframe.src += "&autoplay=1";
+        songPlayed = true;
+    }
 }
 
+/* Typewriter text */
 const text =
 "Payal…\n" +
 "shayad tumhe idea bhi nahi hai,\n" +
@@ -138,12 +147,14 @@ function startTyping() {
     }, 60);
 }
 
+/* No button runs away */
 const noBtn = document.getElementById("noBtn");
 noBtn.addEventListener("mouseover", () => {
     noBtn.style.left = Math.random() * 70 + "%";
     noBtn.style.top = Math.random() * 60 + "%";
 });
 
+/* Floating hearts */
 setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
