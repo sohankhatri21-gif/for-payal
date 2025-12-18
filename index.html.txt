@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Payal ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom right, #ff6a88, #ff99ac);
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+
+.page {
+    display: none;
+    text-align: center;
+    padding: 22px;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.page.active { display: block; }
+
+h1 { font-size: 26px; }
+p { font-size: 16px; opacity: 0.95; }
+
+button {
+    margin-top: 25px;
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4f7a;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.no {
+    background: #ffd6de;
+    position: absolute;
+}
+
+.gif {
+    width: 200px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    color: rgba(255,255,255,0.8);
+    font-size: 18px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1>Hey Payal ♥️</h1>
+    <p>I want to say something… just listen for a moment</p>
+    <button onclick="nextPage(1)">Open it</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>Payal, will you do me a favour? 🥺</h1>
+    <p>Bas thoda sa time</p>
+    <button onclick="nextPage(2)">Show me</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <h1 id="typeText"></h1>
+    <img class="gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+    <br>
+    <button onclick="nextPage(3)">Yes 💕</button>
+    <button class="no" id="noBtn">No 🙈</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <h1>Payal, this is for you ❤️</h1>
+
+    <img class="gif" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+
+    <p style="margin-top:15px;">
+        Tumhari muskurahat meri favourite cheez hai ✨<br><br>
+        <b>Will you be mine?</b> 💖
+    </p>
+
+    <!-- YouTube Song -->
+    <iframe width="300" height="170"
+        src="https://www.youtube.com/embed/1poXN3jF2o0?autoplay=1"
+        allow="autoplay"
+        style="border-radius:12px; border:none;">
+    </iframe>
+</div>
+
+<script>
+function nextPage(n) {
+    document.getElementById("page" + n).classList.remove("active");
+    document.getElementById("page" + (n + 1)).classList.add("active");
+    if (n === 2) startTyping();
+}
+
+const text =
+"Payal…\n" +
+"shayad tumhe idea bhi nahi hai,\n" +
+"par tumse baat karke din better ho jaata hai.\n\n" +
+"Toh aaj bas ek sawaal… 💖";
+
+let index = 0;
+function startTyping() {
+    const el = document.getElementById("typeText");
+    el.innerHTML = "";
+    index = 0;
+    const interval = setInterval(() => {
+        el.innerHTML += text.charAt(index);
+        index++;
+        if (index >= text.length) clearInterval(interval);
+    }, 60);
+}
+
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * 70 + "%";
+    noBtn.style.top = Math.random() * 60 + "%";
+});
+
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "♥";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 22 + 10 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 350);
+</script>
+
+</body>
+</html>
